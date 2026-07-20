@@ -1,0 +1,6 @@
+requests>=2.31
+fastapi>=0.111
+uvicorn[standard]>=0.29
+pydantic>=2.0
+google-genai>=2.0     # free-tier LLM provider (default)
+anthropic>=0.40        # optional: set LLM_PROVIDER=claude to use this instead
