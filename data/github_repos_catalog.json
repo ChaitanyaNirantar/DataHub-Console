@@ -1,0 +1,78 @@
+{
+  "dataset_name": "github_repos",
+  "source": "GitHub Search API",
+  "description": "Public GitHub repository metadata, sourced via the GitHub Search API.",
+  "row_count": 60,
+  "quarantined_count": 0,
+  "fields": [
+    {
+      "name": "repo_id",
+      "type": "int",
+      "nullable": false,
+      "null_rate": 0.0
+    },
+    {
+      "name": "full_name",
+      "type": "str",
+      "nullable": false,
+      "null_rate": 0.0
+    },
+    {
+      "name": "description",
+      "type": "str",
+      "nullable": true,
+      "null_rate": 0.0
+    },
+    {
+      "name": "language",
+      "type": "str",
+      "nullable": true,
+      "null_rate": 0.0
+    },
+    {
+      "name": "stars",
+      "type": "int",
+      "nullable": false,
+      "null_rate": 0.0
+    },
+    {
+      "name": "forks",
+      "type": "int",
+      "nullable": false,
+      "null_rate": 0.0
+    },
+    {
+      "name": "open_issues",
+      "type": "int",
+      "nullable": false,
+      "null_rate": 0.0
+    },
+    {
+      "name": "created_at",
+      "type": "str",
+      "nullable": false,
+      "null_rate": 0.0
+    },
+    {
+      "name": "pushed_at",
+      "type": "str",
+      "nullable": false,
+      "null_rate": 0.0
+    },
+    {
+      "name": "license",
+      "type": "str",
+      "nullable": true,
+      "null_rate": 0.0
+    },
+    {
+      "name": "url",
+      "type": "str",
+      "nullable": false,
+      "null_rate": 0.0
+    }
+  ],
+  "last_updated_utc": "2026-07-17T22:59:46.504488+00:00",
+  "primary_key": "repo_id",
+  "refresh_method": "scraper.GitHubScraper.fetch (manual or scheduled)"
+}
