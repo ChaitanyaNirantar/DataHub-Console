@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>DataHub — Catalog &amp; Query Console</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,500&family=Newsreader:ital@1&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar__drawer">
+    <span class="topbar__tab">DSRS · Internal</span>
+  </div>
+  <div class="topbar__title">
+    <h1>DataHub</h1>
+    <p class="topbar__subtitle"><em>the catalog</em> &amp; the console — browse what's onboarded, ask what you need</p>
+  </div>
+  <div class="topbar__status" id="status-pill">
+    <span class="dot" id="status-dot"></span>
+    <span id="status-text">connecting…</span>
+  </div>
+</header>
+
+<main class="layout">
+
+  <section class="card-index" aria-labelledby="catalog-heading">
+    <div class="card-index__tab">01 — CATALOG</div>
+    <div class="card-index__body">
+      <h2 id="catalog-heading" class="card-index__dataset-name">github_repos</h2>
+      <p class="card-index__source">Source: GitHub Search API</p>
+
+      <dl class="card-index__stats">
+        <div><dt>Rows</dt><dd id="stat-rows">—</dd></div>
+        <div><dt>Quarantined</dt><dd id="stat-quarantined">—</dd></div>
+        <div><dt>Last refreshed</dt><dd id="stat-updated">—</dd></div>
+      </dl>
+
+      <table class="fields-table" aria-label="Field definitions">
+        <thead>
+          <tr><th>field</th><th>type</th><th>null%</th></tr>
+        </thead>
+        <tbody id="fields-tbody">
+          <tr><td colspan="3" class="muted">loading fields…</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="console" aria-labelledby="console-heading">
+    <div class="console__tab">02 — ASK</div>
+    <div class="console__body">
+      <h2 id="console-heading">Ask DataHub</h2>
+      <p class="console__hint">Plain English in. A read-only query, run for you, out.</p>
+
+      <form id="ask-form" class="ask-form">
+        <input
+          id="ask-input"
+          type="text"
+          placeholder="e.g. top 5 most-starred Python repos with an MIT license"
+          autocomplete="off"
+        />
+        <button type="submit" id="ask-submit">Ask</button>
+      </form>
+
+      <div class="chips" id="example-chips">
+        <button class="chip" type="button" data-q="What are the top 5 most-starred repos overall?">top 5 by stars</button>
+        <button class="chip" type="button" data-q="Which languages appear most often in this dataset?">languages, by count</button>
+        <button class="chip" type="button" data-q="Show 5 MIT-licensed repos with the most open issues">MIT repos, most issues</button>
+      </div>
+
+      <div id="ask-output" class="ask-output" hidden>
+        <div class="ask-output__row">
+          <span class="ask-output__label">generated sql</span>
+          <pre id="ask-sql" class="sql-block"></pre>
+        </div>
+        <p id="ask-explanation" class="ask-explanation"></p>
+        <div id="ask-error" class="ask-error" hidden></div>
+        <div class="table-wrap">
+          <table class="results-table" id="results-table" aria-label="Query results">
+            <thead id="results-thead"></thead>
+            <tbody id="results-tbody"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="browser" aria-labelledby="browser-heading">
+    <div class="browser__tab">03 — BROWSE</div>
+    <div class="browser__body">
+      <div class="browser__head">
+        <h2 id="browser-heading">Drawer view</h2>
+        <div class="browser__filters">
+          <label>
+            language
+            <select id="filter-language"><option value="">any</option></select>
+          </label>
+          <label>
+            min stars
+            <input id="filter-stars" type="number" min="0" step="500" value="0" />
+          </label>
+          <button id="filter-apply" type="button">Filter</button>
+        </div>
+      </div>
+      <div class="table-wrap">
+        <table class="results-table" id="browse-table" aria-label="Dataset rows">
+          <thead>
+            <tr>
+              <th>repo</th><th>language</th><th>★ stars</th><th>forks</th><th>license</th><th>pushed</th>
+            </tr>
+          </thead>
+          <tbody id="browse-tbody">
+            <tr><td colspan="6" class="muted">loading…</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <span>DataHub Console — dataset onboarding pipeline + agentic query layer, served from one FastAPI app.</span>
+</footer>
+
+<script src="app.js"></script>
+</body>
+</html>
