@@ -1,7 +1,5 @@
 A full-stack dataset onboarding + research console — source data from an external API, clean and catalog it, then browse it or ask questions about it in plain English.
 
-Built to mirror a real "Data Science Intern — DataHub" role: dataset management, data sourcing/scraping, cataloguing, an internal API, and agentic (LLM-powered) query tooling. One backend, one frontend, no mocked data.
-
 Table of Contents
 What it does
 Why it exists
